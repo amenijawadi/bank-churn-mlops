@@ -117,3 +117,8 @@ def test_batch_predict():
         data = response.json()
         assert "predictions" in data
         assert data["count"] == 2
+
+def test_docs_endpoint():     
+    """Test que la documentation Swagger est accessible"""  
+    response = client.get("/docs")      
+    assert response.status_code == 200
