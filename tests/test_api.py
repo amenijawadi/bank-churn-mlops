@@ -4,10 +4,7 @@ import os
 import json
 from unittest.mock import Mock, patch
 
-from fastapi.testclient import TestClient
-from app.main import app
 
-client = TestClient(app)
 
 # Ajoute le chemin du projet pour pouvoir importer l'application
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -125,5 +122,7 @@ def test_batch_predict():
 
 def test_docs_endpoint():
     """Test que la documentation Swagger est accessible"""
+    client = TestClient(app)  
     response = client.get("/docs")
     assert response.status_code == 200
+
